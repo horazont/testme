@@ -1,0 +1,4 @@
+/*.egg-info
+/.direnv
+/dist
+__pycache__
