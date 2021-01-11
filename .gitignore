@@ -2,3 +2,7 @@
 /.direnv
 /dist
 __pycache__
+/testme/static/css/*.css
+/.env
+/alembic.ini
+/.local

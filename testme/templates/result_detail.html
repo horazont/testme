@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block body %}
+<div id="result">
+	<h1>{{ qn_title }}: Ergebnis für {{ name }}</h1>
+	<h2>Profilzuordnung</h2>
+	<ol class="profiles">
+	{% for profile in profiles %}
+		<li>
+			<h2>{{ profile.title }}</h2>
+			<div class="score"><span class="score-label">Zutreffend:</span> <span class="score">{{ profile.score | format_percent }}</span></div>
+			{{ profile.body | markdown }}
+		</li>
+	{% endfor %}
+	</ol>
+	<h2>Antworten</h2>
+	{% for question_title, answers in questions %}
+	<h3>{{ question_title }}</h3>
+	{% if answers %}
+	<ul class="answers">
+	{% for answer_text in answers %}
+		<li>{{ answer_text | markdown }}</li>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<p><em>Keine Antwort ausgewählt.</em></p>
+	{% endif %}
+	{% endfor %}
+</div>
+{% endblock %}

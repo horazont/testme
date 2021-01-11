@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block head %}
+<title>{{ question_title }} ({{ qn_title }})</title>
+{% endblock %}
+{% block body %}
+<div id="question">
+	<h1>{{ qn_title }}</h1>
+	<h2>{{ question_title }}</h2>
+	{{ question_text | markdown }}
+	<form method="POST">
+	{{ form.csrf_token }}
+	{% if allow_none %}
+	<p>Es ist erlaubt, keine Antwort anzugeben.</p>
+	{% endif %}
+	<ul class="choices {% if multiple_choice %}multi{% endif %}">
+	{% for choice in form.choices %}
+		<li>{{ choice }} <label for="{{ choice.id }}">{{ choice.label.text | markdown }}</label></li>
+	{% endfor %}
+	</ul>
+	{{ form.action_submit }}
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+{% block head %}
+<title>{{ title }}</title>
+{% endblock %}
+{% block body %}
+<h1>{{ title }}</h1>
+<form method="POST">
+{{ form.csrf_token }}
+<p>{{ form.name.label }}: {{ form.name }}</p>
+{{ form.action_start }}
+</form>
+{% endblock %}

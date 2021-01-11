@@ -1,0 +1,77 @@
+{% extends "_base.html" %}
+{% block head %}
+<title>Frage bearbeiten</title>
+{% endblock %}
+{% block body %}
+<h1>Frage bearbeiten</h1>
+<form method="POST">
+	{{ form.csrf_token }}
+	<h2>Allgemein</h2>
+	<div>
+		{{ form.title.label }} {{ form.title }}
+	</div>
+	<div>
+		{{ form.body.label }} {{ form.body }}
+	</div>
+	<div>
+		{{ form.multiple_choice }}{{ form.multiple_choice.label }}
+	</div>
+	<div>
+		{{ form.allow_none }}{{ form.allow_none.label }}
+	</div>
+	<div>
+		{{ form.shuffled }}{{ form.shuffled.label }}
+	</div>
+	<div>
+		<a href="{{ url_for('.root', id_=qid, edit_id=edit_id) }}">Verwerfen</a>
+		{{ form.action_save }}
+		{{ form.action_save_and_return }}
+	</div>
+	<h2>Antwortmöglichkeiten</h2>
+	<table class="choice-table">
+		<col/>
+		<colgroup class="weights">
+			{% for profile_info in profiles %}
+			<col class="weight"/>
+			{% endfor %}
+		</colgroup>
+		<col/>
+		<thead>
+			<tr>
+				<th rowspan="2">Antworttext</th>
+				{% if profiles %}
+				<th colspan="{{ profiles | length }}">Punkte</th>
+				{% endif %}
+				<th rowspan="2">Aktionen</th>
+			</tr>
+			<tr>
+				{% for profile_info in profiles %}
+				<th>{{ profile_info.title }}</th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for choice in form.choices.entries %}
+			<tr>
+				<td class="textarea">{{ choice.id_ }}{{ choice.order }}{{ choice.body }}</td>
+				{% for weight in choice.weights %}
+				<td>
+					{{ weight.profile_id }}{{ weight.weight(class="weight") }}
+				</td>
+				{% endfor %}
+				<td>
+					{%- if not loop.first -%}
+					{{ choice.action_move_top }}{{ choice.action_move_up }}
+					{%- endif -%}
+					{%- if not loop.last -%}
+					{{ choice.action_move_down }}{{ choice.action_move_bottom }}
+					{%- endif -%}
+					{{- choice.action_delete -}}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{{ form.action_add_choice }}
+</form>
+{% endblock %}

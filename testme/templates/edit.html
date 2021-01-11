@@ -1,0 +1,70 @@
+{% extends "_base.html" %}
+{% block head %}
+<title>Test bearbeiten</title>
+{% endblock %}
+{% block body %}
+<h1>Test bearbeiten</h1>
+<form action="{{ action_url }}" method="POST">
+	{{ form.csrf_token }}
+	<h2>Allgemein</h2>
+	<div>
+		{{ form.title.label }}{{ form.title(size=20) }}
+	</div>
+	<div>
+		{{ form.action_save }}
+		{{ form.action_save_and_start }}
+	</div>
+	<h2>Profile</h2>
+	<ul>
+	{% for profile in form.profiles.entries %}
+		<li>
+			{{ profile.id_ }}
+			<div>
+				{{ profile.title.label }} {{ profile.title }}
+			</div>
+			<div>
+				{{ profile.body.label }} {{ profile.body }}
+			</div>
+			{{ profile.action_delete }}
+		</li>
+	{% endfor %}
+	</ul>
+	{{ form.action_add_profile }}
+	<h2>Fragen</h2>
+	<ol>
+	{% for question in form.questions.entries %}
+		<li>
+			{% set question_id = question.id_.data %}
+			{{ question.id_ }}
+			{{ question.order }}
+			{{ questions_extra[question_id].title }} ({{ questions_extra[question_id].choices }} Antwortmöglichkeit(en))
+			<div>
+				{% if not loop.first %}
+				{{ question.action_move_top }}
+				{{ question.action_move_up }}
+				{% endif %}
+				{% if not loop.last %}
+				{{ question.action_move_down }}
+				{{ question.action_move_bottom }}
+				{% endif %}
+				<button type="submit" name="{{ form.action_goto_question.name }}" value="{{ question.id_.data }}">{{ form.action_goto_question.label.text }}</button>
+				{{ question.action_delete }}
+			</div>
+		</li>
+	{% endfor %}
+	</ol>
+	{{ form.action_add_question }}
+	<h2>Teilnehmer</h2>
+	<p>Teilnehmerlink: <input type="text" readonly="readonly" value="{{ external_url }}"></p>
+	{% if not participants %}
+	<p>Bisher keine Teilnehmer!</p>
+	{% else %}
+	<p>Die Links öffnen in einem neuen Tab/Fenster.</p>
+	<ul>
+	{% for participant_id, name in participants %}
+		<li><a target="_blank" href="{{ url_for("questionnaire.complete", qid=id_, participant_id=participant_id) }}">{{ name }}</a></li>
+	{% endfor %}
+	</ul>
+	{% endif %}
+</form>
+{% endblock %}

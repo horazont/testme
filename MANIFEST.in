@@ -1,1 +1,3 @@
 recursive-include testme/templates *.html
+recursive-include testme/static/css *.css
+recursive-include testme/static/js *.js
