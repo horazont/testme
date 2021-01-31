@@ -47,7 +47,7 @@ input[type="submit"], button {
 
 input[type="checkbox"], input[type="radio"] {
 	position: absolute;
-	z-index: -1;
+	z-index: -1000;
 }
 
 input[type="checkbox"] + label:before {
@@ -177,7 +177,7 @@ div#question {
 	padding: $w-l1;
 	background-color: $gray-100;
 
-	> h1 {
+	h1 {
 		text-align: center;
 	}
 

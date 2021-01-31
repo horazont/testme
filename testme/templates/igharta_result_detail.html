@@ -1,0 +1,18 @@
+{% extends "result_detail.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/igharta.css') }}">
+{{ super() }}
+{% endblock %}
+{% block body_attrs -%}
+class="on-result"
+{%- endblock %}
+{% block body %}
+<div id="layers">
+	{#- -#}
+	<div id="layer-igharta"></div>
+	{#- -#}
+</div>
+<div id="content">
+{{ super() }}
+</div>
+{% endblock %}
