@@ -81,7 +81,7 @@
 	background-image: url('../img/igharta/igharta.png');
 
 	.on-start & {
-		animation: 3s linear 4s 1 both blurout;
+		animation: 3s linear 7s 1 both blurout;
 	}
 	.on-question &, .on-result & {
 		-webkit-filter: blur(2px);
@@ -96,7 +96,7 @@
 
 	.on-start & {
 		opacity: 0;
-		animation: 4s ease-out 0s 1 both fadeout;
+		animation: 4s ease-out 3s 1 both fadeout;
 	}
 }
 
@@ -105,7 +105,7 @@
 
 	.on-start & {
 		opacity: 0;
-		animation: 2s ease-out 0s 1 both fadeout;
+		animation: 2s ease-out 3s 1 both fadeout;
 	}
 }
 
