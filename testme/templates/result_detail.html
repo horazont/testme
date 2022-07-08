@@ -4,7 +4,7 @@
 	<h1>{{ qn_title }}: Ergebnis für {{ name }}</h1>
 	<h2>Profilzuordnung</h2>
 	<ol class="profiles">
-	{% for profile in profiles %}
+	{% for profile in profiles[:2] %}
 		<li>
 			<h2>{{ profile.title }}</h2>
 			<div class="score"><span class="score-label">Zutreffend:</span> <span class="score">{{ profile.score | format_percent }}</span></div>
