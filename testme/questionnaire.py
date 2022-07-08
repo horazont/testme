@@ -249,7 +249,7 @@ def question(qid, participant_id, question_id):
         ))
 
     return render_template(
-        "igharta_question.html",
+        "drachen_question.html",
         form=form,
         qn_title=qn.title,
         question_title=question.title,
@@ -382,7 +382,7 @@ def complete(qid: bytes, participant_id: bytes):
         )
 
     return render_template(
-        "igharta_result_detail.html",
+        "drachen_result_detail.html",
         profiles=profile_info,
         name=participant.name,
         qn_title=qn.title,
