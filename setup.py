@@ -11,6 +11,7 @@ setup(
         "flask-babel~=2.0",
         "flask-markdown~=0.3",
         "flask-wtf~=0.14",
+        "markupsafe~=2.0,<2.1",
         "environ-config~=20.1",
     ],
     packages=find_packages(),
