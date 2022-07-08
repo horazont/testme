@@ -91,7 +91,7 @@ def start(qid):
         ))
 
     return render_template(
-        "igharta_start.html",
+        "drachen_start.html",
         qid=qid,
         title=qn.title,
         form=form,

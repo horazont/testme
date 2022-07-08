@@ -1,0 +1,23 @@
+{% extends "start.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/drachen.css') }}">
+{{ super() }}
+{% endblock %}
+{% block body_attrs -%}
+class="on-start"
+{%- endblock %}
+{% block body %}
+<div id="backdrop"></div>
+<div id="layers" style="opacity: 0; animation: 0.5s linear 2.5s 1 both fadein;">
+	{#- -#}
+	<div id="layer-drachen"></div>
+	{#- -#}
+	<div id="layer-clouds1" class="clouds"></div>
+	{#- -#}
+	<div id="layer-clouds2" class="clouds"></div>
+	{#- -#}
+</div>
+<div id="content">
+{{ super() }}
+</div>
+{% endblock %}
